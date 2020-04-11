@@ -5,7 +5,8 @@ form {
 
 /* Full-width inputs */
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -37,9 +38,19 @@ button:hover {
     background-color: #f44336;
 }
 
+a {
+    color: #4d64f8;
+    text-decoration: none;
+}
+
 /* Add padding to containers */
 .container {
     padding: 16px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
 }
 
 /* The "Forgot password" text */
