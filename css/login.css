@@ -109,4 +109,8 @@ footer{
 	background-color: #313d4b;
 	text-align: center;
 	border-top: #708090 5px solid;
+
+a {
+    text-align: center;
+    margin-top: 8px;
 }

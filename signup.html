@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/login.css" />
+
+    <title>Casting Management</title>
+</head>
+
+<body>
+
+    <!-- Signup Page -->
+    <h1 class="header">Create an account</h1>
+
+    <form action="signup.php" method="POST">
+        <div class="container">
+            <label for="firstname"><b>First name</b></label>
+            <input type="text" placeholder="Enter your first name" name="firstname" required>
+
+            <label for="lastname"><b>Last name</b></label>
+            <input type="text" placeholder="Enter your last name" name="lastname" required>
+            
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter your email" name="email" required>
+
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="This is your new username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Must be at least 8 characters" name="psw" required minlength="8">
+
+            <button type="submit">Create account</button>
+        </div>
+    </form>
+
+    <div class="flex">
+        <a href="login.html">I have an account</a>
+    </div>
+
+</body>
+
+</html>
