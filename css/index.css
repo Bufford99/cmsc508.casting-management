@@ -50,56 +50,44 @@ header a:hover{
 	color: #cccccc;
 	font-weight: bold;
 }
-.header {
-    text-align: center;
-}
 /* Showcase */
 #showcase{
 	height: 500px;
 	background: url('../images/showcase.jpg') no-repeat;
 	background-size: 100% 500px;
 }
-
-/* Full-width inputs */
-input[type=text]{
-	position: absolute;
-	width: 25%;
-	margin: 13% 0 0 65%;
-    padding: 12px 20px;
-    display: inline-block;
-    border: 1px solid #313d4b;
-    box-sizing: border-box;
-    float: right;
-
-}
-input[type=password] {
-	position: absolute;
-    width: 25%;
-    margin: 16% 0 0 65%;
-    padding: 12px 20px;
-    display: inline-block;
-    border: 1px solid #313d4b;
-    box-sizing: border-box;
-    float: right;
-}
-
-.loginButton {
-	position: absolute;
-	width: 25%;
-	margin: 19% 0 0 65%;
+.rolesSearch{
 	border: 1px solid #313d4b;
-    background-color: #FF69B4;
-    color: white;
-    padding: 14px 20px;
-    cursor: pointer;
-    float: right;
+	height: 10px;
+	width: 300px;
+	padding: 10px;
+	outline: none;
+	margin-top: 200px;
+	float: right;
 }
-#signLink{
-	position: absolute;
-	margin: 22% 0 0 69%;
+.locationSearch{
+	border: 1px solid #313d4b;
+	border-left: none;
+	border-right: none;
+	height: 10px;
+	width: 100px;
+	padding: 10px;
+	outline: none;
+	margin-top: 200px; 
+	float: right;
+}
+.searchButton{
+	height: 32px;
+	width: 150px;
 	color: #ffffff;
-}
+	background-color: #FF69B4;
+	border: 1px solid #313d4b;
+	border-radius: 0 25px 25px 0;
+	text-align: left;
+	margin: 200px 50px 0 0;
+	float: right;
 
+}
 footer{
 	position: relative;
 	bottom: 0;
@@ -109,8 +97,26 @@ footer{
 	background-color: #313d4b;
 	text-align: center;
 	border-top: #708090 5px solid;
-
-a {
-    text-align: center;
-    margin-top: 8px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

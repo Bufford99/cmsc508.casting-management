@@ -5,40 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>508 | Welcome</title>
-
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/login.css" />
 
     <title>Casting Management</title>
 </head>
+
 <body>
-    <header>
+        <header>
         <div class="container">
             <div id="branding">
                 <h1><span class="highlight">Name</span> Casting</h1>
             </div>
             <nav>
                 <ul>
-                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="postings.html">Postings</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li class="current"><a href="login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <section id="showcase">
-        <div class="container">
-            <form>
-                <div class="box">
-                    <button class="searchButton">Find my next role!</button>
-                    <input type="text" placeholder="Location..." class="locationSearch">
-                    <input type="text" placeholder="Role type..." class="rolesSearch">
-                </div>
-            </form>
-        </div>
+        <form action="login.php" method="POST">
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button class="loginButton" type="submit">Login</button>
+
+            <a href="signup.html" id="signLink">Dont have an account? Sign up!</a>
+        </form>
     </section>
     <footer>
         <p>Casting, Copyright &copy; 2020</p>
