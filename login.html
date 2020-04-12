@@ -19,30 +19,28 @@
             </div>
             <nav>
                 <ul>
-                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="postings.html">Postings</a></li>
-                    <li><a href="home.html">Login</a></li>
+                    <li class="current"><a href="login.html">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <!-- Login Page -->
-    <h1 class="header">Login</h1>
-
-    <form action="login.php" method="POST">
-        <div class="container">
-            <label for="uname"><b>Username</b></label>
+    <section id="showcase">
+        <form action="login.php" method="POST">
             <input type="text" placeholder="Enter Username" name="uname" required>
-
-            <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-            <button type="submit">Login</button>
-        </div>
-    </form>
+            <button class="loginButton" type="submit">Login</button>
 
+            <a href="signup.html" id="signLink">Dont have an account? Sign up!</a>
+        </form>
+    </section>
+    <footer>
+        <p>Casting, Copyright &copy; 2020</p>
+    </footer>
 </body>
 
 </html>

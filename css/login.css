@@ -53,3 +53,60 @@ header a:hover{
 .header {
     text-align: center;
 }
+/* Showcase */
+#showcase{
+	height: 500px;
+	background: url('../images/showcase.jpg') no-repeat;
+	background-size: 100% 500px;
+}
+
+/* Full-width inputs */
+input[type=text]{
+	position: absolute;
+	width: 25%;
+	margin: 13% 0 0 65%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #313d4b;
+    box-sizing: border-box;
+    float: right;
+
+}
+input[type=password] {
+	position: absolute;
+    width: 25%;
+    margin: 16% 0 0 65%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #313d4b;
+    box-sizing: border-box;
+    float: right;
+}
+
+.loginButton {
+	position: absolute;
+	width: 25%;
+	margin: 19% 0 0 65%;
+	border: 1px solid #313d4b;
+    background-color: #FF69B4;
+    color: white;
+    padding: 14px 20px;
+    cursor: pointer;
+    float: right;
+}
+#signLink{
+	position: absolute;
+	margin: 22% 0 0 69%;
+	color: #ffffff;
+}
+
+footer{
+	position: relative;
+	bottom: 0;
+	height: 187px;
+	padding: 20px;
+	color: #f4f4f4;
+	background-color: #313d4b;
+	text-align: center;
+	border-top: #708090 5px solid;
+}
