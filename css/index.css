@@ -1,62 +1,4 @@
-body{
-	font: 15px/1.5 Arial, Helvetica, sans-serif;
-	padding: 0;
-	margin: 0;
-	background-color: #f4f4f4;
-}
-/* Header */
-header{
-	background: #708090;
-	color: #ffff;
-	padding-top: 30px;
-	min-height: 70px;
-	border-bottom: #313d4b 5px solid;
-}
-/* All links inside of the header*/
-header a{
-	color: #ffffff;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 16px;
-}
-/* All list items in header*/
-header li{
-	float: left;
-	display: inline;
-	padding: 0 20px 0 20px;
-
-}
-/* Branding for the header*/
-header #branding{
-	float: left;
-}
-
-header #branding h1{
-	margin: 0;
-}
-
-header nav{
-	float: right;
-	margin-top: 10px;
-	padding-left: : 50px;
-}
-
-header .highlight, header .current a{
-	color: #313d4b;
-	font-weight: bold;
-}
-
-header a:hover{
-	color: #cccccc;
-	font-weight: bold;
-}
-/* Showcase */
-#showcase{
-	height: 500px;
-	background: url('../images/showcase.jpg') no-repeat;
-	background-size: 100% 500px;
-}
-.rolesSearch{
+#rolesSearch{
 	border: 1px solid #313d4b;
 	height: 10px;
 	width: 300px;
@@ -65,7 +7,7 @@ header a:hover{
 	margin-top: 200px;
 	float: right;
 }
-.locationSearch{
+#locationSearch{
 	border: 1px solid #313d4b;
 	border-left: none;
 	border-right: none;
@@ -76,7 +18,7 @@ header a:hover{
 	margin-top: 200px; 
 	float: right;
 }
-.searchButton{
+#searchButton{
 	height: 32px;
 	width: 150px;
 	color: #ffffff;
@@ -88,35 +30,3 @@ header a:hover{
 	float: right;
 
 }
-footer{
-	position: relative;
-	bottom: 0;
-	height: 187px;
-	padding: 20px;
-	color: #f4f4f4;
-	background-color: #313d4b;
-	text-align: center;
-	border-top: #708090 5px solid;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
