@@ -5,9 +5,23 @@ form {
     width: 360px;
 }
 
+form a {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#signUpForm {
+    display: none;
+}
+
 /* Full-width inputs */
 input[type=text],
-    [type=password] {
+    [type=password],
+    [type=email] {
     width: 100%;
     margin-bottom: 3px;
     padding: 12px 20px;
@@ -17,7 +31,7 @@ input[type=text],
     float: right;
 }
 
-#loginButton {
+.submitFormButton {
     width: 100%;
     border: 1px solid #313d4b;
     color: white;
@@ -28,10 +42,4 @@ input[type=text],
 
 #signLink {
     color: #ffffff;
-}
-
-a {
-    width: 100%;
-    text-align: center;
-    margin-top: 8px;
 }

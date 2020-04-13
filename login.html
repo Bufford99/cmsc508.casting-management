@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/login.css" />
 
+    <script src="js/scripts.js"></script>
+
     <title>Casting Management</title>
 </head>
 
@@ -29,14 +31,31 @@
         </div>
     </header>
     <section id="showcase">
-        <form class="flex" action="login.php" method="POST">
+
+        <!-- Login -->
+        <form id="loginForm" class="flex" action="login.php" method="POST">
             <input type="text" placeholder="Enter Username" name="uname" required>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-            <button id="loginButton" type="submit">Login</button>
+            <button class="submitFormButton" type="submit">Login</button>
 
-            <a href="signup.html" id="signLink">Dont have an account? Sign up!</a>
+            <a id="signLink" onclick="displaySignUp()">Dont have an account? Sign up!</a>
         </form>
+
+        <!-- Sign Up -->
+        <form id="signUpForm" class="flex" action="signup.php" method="POST">
+            <input type="text" placeholder="Enter your first name" name="firstname" required>
+            <input type="text" placeholder="Enter your last name" name="lastname" required>
+            <input type="email" placeholder="Enter your email" name="email" required>
+            <input type="text" placeholder="This is your new username" name="uname" required>
+            <input type="password" placeholder="Must be at least 8 characters" name="psw" required
+                minlength="8">
+
+            <button class="submitFormButton" type=" submit">Create account</button>
+
+            <a id="signLink" onclick="displayLogin()">I have an account</a>
+        </form>
+
     </section>
     <footer>
         <p>Casting, Copyright &copy; 2020</p>
