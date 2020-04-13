@@ -16,6 +16,7 @@ form a {
 
 #signUpForm {
     display: none;
+    top: 30%;
 }
 
 /* Full-width inputs */
