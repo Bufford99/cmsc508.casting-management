@@ -1,19 +1,15 @@
-/* Full-width inputs */
-input[type=text]{
-	position: absolute;
-	width: 25%;
-	margin: 13% 0 0 65%;
-    padding: 12px 20px;
-    display: inline-block;
-    border: 1px solid #313d4b;
-    box-sizing: border-box;
-    float: right;
-
+form {
+    position: absolute;
+    right: 11%;
+    top: 40%;
+    width: 360px;
 }
-input[type=password] {
-	position: absolute;
-    width: 25%;
-    margin: 16% 0 0 65%;
+
+/* Full-width inputs */
+input[type=text],
+    [type=password] {
+    width: 100%;
+    margin-bottom: 3px;
     padding: 12px 20px;
     display: inline-block;
     border: 1px solid #313d4b;
@@ -22,23 +18,20 @@ input[type=password] {
 }
 
 #loginButton {
-	position: absolute;
-	width: 25%;
-	margin: 19% 0 0 65%;
-	border: 1px solid #313d4b;
-    background-color: #FF69B4;
+    width: 100%;
+    border: 1px solid #313d4b;
     color: white;
     padding: 14px 20px;
     cursor: pointer;
     float: right;
 }
-#signLink{
-	position: absolute;
-	margin: 22% 0 0 69%;
-	color: #ffffff;
+
+#signLink {
+    color: #ffffff;
 }
 
 a {
+    width: 100%;
     text-align: center;
     margin-top: 8px;
 }
