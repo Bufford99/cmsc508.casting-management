@@ -34,7 +34,7 @@ if ($row === false) {
         $_SESSION['logged_in'] = time();
 
         // redirect to homepage
-        header('Location: home.html');
+        header('Location: index.html');
         exit;
     } else {
         die($login_error_msg);

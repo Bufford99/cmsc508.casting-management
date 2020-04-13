@@ -45,7 +45,7 @@ if ($row['num'] > 0) {
 // prepare inserting into table
 $passwordHash = password_hash($psw, PASSWORD_DEFAULT);
 
-// prepare and execute INSERT statement
+// prepare and execute INSERT statement to Account
 $sql = "INSERT INTO Account (first_name, last_name, email, username, pass) VALUES (:firstname, :lastname, :email, :username, :pass)";
 $stmt = $conn->prepare($sql);
 
@@ -57,10 +57,36 @@ $stmt->bindValue(':pass', $passwordHash);
 
 $res = $stmt->execute();
 
+// prepare and execute INSERT statement to Applicant
+$sql = "SELECT id from Account WHERE username=:username";
+$stmt = $conn->prepare($sql);
+
+$stmt->bindValue(':username', $uname);
+
+$res = $stmt->execute();
+
+if ($res) {
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+} else {
+    die($signup_error_msg);
+}
+
+if ($row) {
+    $id = $row['id'];
+} else {
+    die($signup_error_msg);
+}
+
+$sql = "INSERT INTO Applicant (id) VALUES (:id)";
+$stmt = $conn->prepare($sql);
+
+$stmt->bindValue(':id', $id);
+
+$res = $stmt->execute();
+
 // check if successful
 if ($res) {
-    header('Location: login.html');
-    echo '<script>alert("Account creation successful!")</script>'; 
+    header('Location: index.html');
     exit;
 } else {
     die($signup_error_msg);
