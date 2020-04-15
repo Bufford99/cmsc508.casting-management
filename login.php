@@ -30,8 +30,7 @@ if ($row === false) {
     $validPassword = password_verify($psw, $row['pass']);
 
     if ($validPassword) {
-        $_SESSION['account_id'] = $row['id'];
-        $_SESSION['logged_in'] = time();
+        $_SESSION['user'] = $row['username'];
 
         // redirect to homepage
         header('Location: index.html');

@@ -86,6 +86,9 @@ $res = $stmt->execute();
 
 // check if successful
 if ($res) {
+    $_SESSION['user'] = $uname;
+
+    // redirect to homepage
     header('Location: index.html');
     exit;
 } else {
