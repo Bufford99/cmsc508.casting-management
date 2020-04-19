@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/login.css" />
+
+    <style>
+        form {
+            position: static;
+            margin: 25vh auto 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/admin.js"></script>
+
+    <title>Name Casting Internal</title>
+</head>
+
+<body>
+    <!-- Login Form -->
+    <form id="internal-login" class="flex" action="admin.php" method="POST" style="display: none;">
+        <h1>Internal Login</h1>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button class="submitFormButton" type="submit" name="adminLogin" value="adminLogin">Login</button>
+    </form>
+
+    <div class="flex" id="create-manager" style="display: none;">
+        <form action="admin.php" method="POST">
+            <h2>Create Manager</h2>
+
+            <label for="manager-type">Manager Type:</label>
+            <select id="manager-type" name="managertype" required>
+                <option value="---">---</option>
+                <option value="audition">Audition</option>
+                <option value="hiring">Hiring</option>
+                <option value="posting">Posting</option>
+            </select>
+
+            <input type="text" placeholder="First name" name="firstname" required>
+            <input type="text" placeholder="Last name" name="lastname" required>
+            <input type="email" placeholder="Email" name="email" required>
+            <input type="text" placeholder="Username" name="uname" required>
+            <input type="password" placeholder="Password" name="psw" required>
+
+            <button class="submitFormButton" type="submit" name="createManager" value="createManager">Create manager</button>
+        </form>
+
+        <a href="logout.php" style="margin: 10px auto;">Logout</a>
+    </div>
+</body>
+
+</html>
