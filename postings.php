@@ -23,7 +23,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
-                    <li class="current"><a href="postings.html">Postings</a></li>
+                    <li class="current"><a href="postings.php">Postings</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li><a href="profile.html">Profile</a></li>
                 </ul>
@@ -40,7 +40,7 @@
             </tr>
 
             <?php
-            $conn = mysqli_connect("localhost", "project_6", "V00864959", "project_6");
+            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
             if ($conn-> connect_error) {
                 die("Connection failed:". $conn-> connect_error);
             }
