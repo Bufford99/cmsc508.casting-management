@@ -30,13 +30,89 @@ if ($row === false) {
     $validPassword = password_verify($psw, $row['pass']);
 
     if ($validPassword) {
-        $_SESSION['user'] = $row['username'];
+        if (isApplicant($row['id'])) {
+            $_SESSION['user'] = $row['username'];
+            header('Location: index.html'); // redirect to homepage
+        } else if (isAuditionManager($row['id'])) {
+            $_SESSION['manager'] = $row['username'];
+            header('Location: ./manager/audition.html');
+        } else if (isHiringManager($row['id'])) {
+            $_SESSION['manager'] = $row['username'];
+            header('Location: ./manager/hiring.html');
+        } else if (isPostingManager($row['id'])) {
+            $_SESSION['manager'] = $row['username'];
+            header('Location: ./manager/posting.html');
+        } else {
+            die('Something went wrong.');
+        }
 
-        // redirect to homepage
-        header('Location: index.html');
         exit;
     } else {
         die($login_error_msg);
+    }
+}
+
+function isApplicant($id) {
+    global $conn;
+
+    $sql = "SELECT id FROM Applicant WHERE id = :id;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row === false) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function isAuditionManager($id) {
+    global $conn;
+    
+    $sql = "SELECT id FROM AuditionManager WHERE id = :id;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row === false) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function isHiringManager($id) {
+    global $conn;
+    
+    $sql = "SELECT id FROM HiringManager WHERE id = :id;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row === false) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function isPostingManager($id) {
+    global $conn;
+    
+    $sql = "SELECT id FROM PostingManager WHERE id = :id;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row === false) {
+        return false;
+    } else {
+        return true;
     }
 }
 
