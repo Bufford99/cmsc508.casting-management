@@ -31,17 +31,17 @@ if ($row === false) {
 
     if ($validPassword) {
         if (isApplicant($row['id'])) {
-            $_SESSION['user'] = $row['username'];
+            $_SESSION['user'] = $row['id'];
             header('Location: index.html'); // redirect to homepage
         } else if (isAuditionManager($row['id'])) {
-            $_SESSION['manager'] = $row['username'];
+            $_SESSION['manager'] = $row['id'];
             header('Location: ./manager/audition.html');
         } else if (isHiringManager($row['id'])) {
-            $_SESSION['manager'] = $row['username'];
+            $_SESSION['manager'] = $row['id'];
             header('Location: ./manager/hiring.html');
         } else if (isPostingManager($row['id'])) {
-            $_SESSION['manager'] = $row['username'];
-            header('Location: ./manager/posting.html');
+            $_SESSION['manager'] = $row['id'];
+            header('Location: ./manager/posting.php');
         } else {
             die('Something went wrong.');
         }
