@@ -62,7 +62,7 @@ function getApplications() {
 function getAuditions() {
     global $conn;
 
-    $sql = "SELECT a.date AS 'date', a.time AS 'time', a.building AS 'building', mc.name AS 'movie_character', mv.title AS 'movie_title' FROM Audition a
+    $sql = "SELECT a.id AS 'id', a.date AS 'date', a.time AS 'time', a.building AS 'building', mc.name AS 'movie_character', mv.title AS 'movie_title' FROM Audition a
         JOIN JobPosting j
         ON a.job_posting = j.id
         JOIN MovieCharacter mc
@@ -89,7 +89,7 @@ function getAuditions() {
         echo '<th align="left">Movie</th>';
 
         while ($row) {
-            echo '<tr>';
+            echo '<tr onclick="window.location=\'audition-detail.php?id='.$row['id'].'\'" style="cursor: pointer;">';
             echo '<td>'.$row['date'].'</td>';
             echo '<td>'.$row['time'].'</td>';
             echo '<td>'.$row['building'].'</td>';
