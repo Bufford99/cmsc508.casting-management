@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/postings.css" />
 
     <script src="js/scripts.js"></script>
 
@@ -17,7 +16,7 @@
     <header>
         <div class="container">
             <div id="branding">
-                <h1><span class="highlight">Name</span> Casting</h1>
+                <h1><span class="highlight">Acano</span> Casting</h1>
             </div>
             <nav>
                 <ul>
@@ -31,12 +30,12 @@
         </div>
     </header>
     <section id="showcase">
-        <table>
+        <table class="postings-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="35%">
             <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>Movie Title</th>
+                <th>Character</th>
+                <th>Role Type</th>
+                <th>Location</th>
             </tr>
 
             <?php
@@ -45,12 +44,12 @@
                 die("Connection failed:". $conn-> connect_error);
             }
 
-            $sql = "SELECT id, first_name, last_name, email from Account";
+            $sql = "SELECT title, name, role_type, state from Movie join MovieCharacter on Movie.id = MovieCharacter.movie join JobPosting on JobPosting.movie_character = MovieCharacter.id join Location on JobPosting.location = Location.id";
             $result = $conn-> query($sql);
 
             if ($result-> num_rows > 0){
                 while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["id"] . "</td><td>". $row["first_name"] . "</td><td>". $row["last_name"] . "</td><td>". $row["email"] . "</td></tr>"; 
+                    echo "<tr><td>". $row["title"] . "</td><td>". $row["name"] . "</td><td>". $row["role_type"] . "</td><td>". $row["state"] . "</td></tr>"; 
                 }
                 echo "</table>";
             }
