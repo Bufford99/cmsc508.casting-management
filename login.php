@@ -38,7 +38,7 @@ if ($row === false) {
             header('Location: ./manager/audition.html');
         } else if (isHiringManager($row['id'])) {
             $_SESSION['manager'] = $row['id'];
-            header('Location: ./manager/hiring.html');
+            header('Location: ./manager/hiring.php');
         } else if (isPostingManager($row['id'])) {
             $_SESSION['manager'] = $row['id'];
             header('Location: ./manager/posting.php');
