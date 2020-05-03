@@ -11,8 +11,8 @@ require_once('../connection.php');
 function getApplications() {
     global $conn;
 
-    $sql = "SELECT concat(ac.first_name, ' ', ac.last_name) AS 'applicant_name', ac.id AS 'applicant_id',
-        j.id AS 'jobposting_id', mc.name AS 'movie_character', mv.title AS 'movie_title'
+    $sql = "SELECT concat(ac.first_name, ' ', ac.last_name) AS 'applicant_name', a.status AS 'status',
+        ac.id AS 'applicant_id', j.id AS 'jobposting_id', mc.name AS 'movie_character', mv.title AS 'movie_title'
             FROM Application a 
             JOIN Account ac
             ON a.owner = ac.id
@@ -38,6 +38,7 @@ function getApplications() {
         echo '<th align="left">Applicant</th>';
         echo '<th align="left">Title</th>';
         echo '<th align="left">Character</th>';
+        echo '<th align="left">Status</th>';
         echo '<th align="right">Action</th>';
 
         while ($row) {
@@ -45,6 +46,7 @@ function getApplications() {
             echo '<td>'.$row['applicant_name'].'</td>';
             echo '<td>'.$row['movie_title'].'</td>';
             echo '<td>'.$row['movie_character'].'</td>';
+            echo '<td>'.$row['status'].'</td>';
             echo '<td><a href="approve.php?aid='.$row['applicant_id'].'&jid='.$row['jobposting_id'].'"</a>Approve</td>';
             echo '<td><a href="reject.php?aid='.$row['applicant_id'].'&jid='.$row['jobposting_id'].'"</a>Reject</td>';
             echo '</tr>';
@@ -112,6 +114,13 @@ function getAuditions() {
 
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/login.css" />
+
+    <style>
+        table, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
     <a href="../logout.php" style="margin: 10px auto;">Logout</a>
