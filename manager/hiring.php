@@ -54,6 +54,7 @@ function getApplications() {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
+        echo '</table>';
         echo '</div>';
     }
 }
@@ -99,6 +100,7 @@ function getAuditions() {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
+        echo '</table>';
         echo '</div>';
     }
 }
