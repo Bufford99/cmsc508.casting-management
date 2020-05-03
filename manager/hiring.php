@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['manager'])) {
+if (!isset($_SESSION['hmanager'])) {
     die('404 unavailable');
 }
 

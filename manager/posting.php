@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['manager'])) {
+if (!isset($_SESSION['pmanager'])) {
     die('404 unavailable');
 }
 
@@ -83,14 +83,7 @@ function retrieveLocations() {
     <link rel="stylesheet" href="../css/login.css" />
 
     <style>
-        form {
-            position: static;
-            margin: 25vh auto 0;
-        }
-
-        h1 {
-            text-align: center;
-        }
+        form { position: static; }
     </style>
 </head>
 <body>

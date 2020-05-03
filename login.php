@@ -30,6 +30,9 @@ if ($row === false) {
     $validPassword = password_verify($psw, $row['pass']);
 
     if ($validPassword) {
+        session_destroy();
+        session_start();
+        
         if (isApplicant($row['id'])) {
             $_SESSION['user'] = $row['id'];
             header('Location: index.html'); // redirect to homepage
@@ -37,10 +40,10 @@ if ($row === false) {
             $_SESSION['manager'] = $row['id'];
             header('Location: ./manager/audition.html');
         } else if (isHiringManager($row['id'])) {
-            $_SESSION['manager'] = $row['id'];
+            $_SESSION['hmanager'] = $row['id'];
             header('Location: ./manager/hiring.php');
         } else if (isPostingManager($row['id'])) {
-            $_SESSION['manager'] = $row['id'];
+            $_SESSION['pmanager'] = $row['id'];
             header('Location: ./manager/posting.php');
         } else {
             die('Something went wrong.');
