@@ -105,3 +105,14 @@ span.psw {
         width: 100%;
     }
 }
+
+#about-comp{
+    float: right;
+    border: solid;
+    text-align: center;
+    background-color: #708090;
+    border-color: #313d4b;
+    margin-top: 5%;
+    margin-right: 2%;
+    margin-left: 75%;
+}

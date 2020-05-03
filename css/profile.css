@@ -1,0 +1,12 @@
+#info-boxes{
+	display: flex;
+}
+
+.box-main{
+	float: right;
+	margin-top: 5%;
+	margin-right: 2%;
+	border: solid;
+	border-color: #000000;
+	padding-right: 20%;
+}
