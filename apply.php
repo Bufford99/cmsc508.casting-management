@@ -3,7 +3,11 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    die('404 unavailable');
+    echo '<script>
+        alert("You must login first");
+        window.location.href="login.html";
+        </script>';
+    die();
 }
 
 require_once('connection.php');
