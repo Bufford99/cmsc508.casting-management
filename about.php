@@ -35,7 +35,7 @@ session_start();
                             echo '<li><a href="login.html">Login</a></li>';
                         }
                     ?>
-                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
         </div>
