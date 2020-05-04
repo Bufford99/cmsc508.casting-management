@@ -1,22 +1,30 @@
-#rolesSearch{
+.role-list{
+	background-color: #FFFFFF;
 	border: 1px solid #313d4b;
-	height: 10px;
+	height: 32px;
 	width: 300px;
 	padding: 10px;
-	outline: none;
 	margin-top: 200px;
 	float: right;
 }
-#locationSearch{
+.role-list  select{
+	display: none;
+}
+
+
+.state-list{
 	border: 1px solid #313d4b;
 	border-left: none;
 	border-right: none;
-	height: 10px;
+	height: 32px;
 	width: 100px;
 	padding: 10px;
 	outline: none;
 	margin-top: 200px; 
 	float: right;
+}
+.state-list select{
+	display: none;
 }
 #searchButton{
 	height: 32px;

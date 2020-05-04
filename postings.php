@@ -24,7 +24,7 @@
                     <li><a href="about.html">About</a></li>
                     <li class="current"><a href="postings.php">Postings</a></li>
                     <li><a href="login.html">Login</a></li>
-                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
         </div>
