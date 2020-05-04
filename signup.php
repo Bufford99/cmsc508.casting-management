@@ -86,10 +86,10 @@ $res = $stmt->execute();
 
 // check if successful
 if ($res) {
-    $_SESSION['user'] = $uname;
+    $_SESSION['user'] = $id;
 
     // redirect to homepage
-    header('Location: index.html');
+    header('Location: index.php');
     exit;
 } else {
     die($signup_error_msg);

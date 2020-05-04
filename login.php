@@ -35,7 +35,7 @@ if ($row === false) {
         
         if (isApplicant($row['id'])) {
             $_SESSION['user'] = $row['id'];
-            header('Location: index.html'); // redirect to homepage
+            header('Location: index.php'); // redirect to homepage
         } else if (isAuditionManager($row['id'])) {
             $_SESSION['manager'] = $row['id'];
             header('Location: ./manager/audition.html');

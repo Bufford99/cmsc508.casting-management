@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +26,16 @@
             </div>
             <nav>
                 <ul>
-                    <li class="current"><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li class="current"><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
                     <li><a href="postings.php">Postings</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <?php
+                        if (isset($_SESSION['user'])) {
+                            echo '<li><a href="logout.php"</a>Logout</li>';
+                        } else {
+                            echo '<li><a href="login.html">Login</a></li>';
+                        }
+                    ?>
                     <li><a href="profile.html">Profile</a></li>
                 </ul>
             </nav>
