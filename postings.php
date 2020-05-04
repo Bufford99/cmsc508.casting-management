@@ -2,6 +2,39 @@
 
 session_start();
 
+require_once('connection.php');
+
+function getPostings() {
+    global $conn;
+
+    if(isset($_SESSION['user'])) {
+        $applicantId = $_SESSION['user'];
+    } else {
+        $applicantId = null;
+    }
+
+    $sql = "SELECT JobPosting.id as 'id', title, name, role_type, state
+        from Movie join MovieCharacter on Movie.id = MovieCharacter.movie
+        join JobPosting on JobPosting.movie_character = MovieCharacter.id
+        join Location on JobPosting.location = Location.id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($stmt->rowCount() > 0){
+        while($row) {
+            echo "<tr><td>". $row["title"] . "</td><td>". $row["name"] . "</td><td>". $row["role_type"] . "</td><td>". $row["state"] . "</td>"; 
+            echo "<td><a href='apply.php?aid=". $applicantId . "&jid=". $row["id"] . "'</a>Apply</td>";
+            echo "<td><a href='favorite.php?aid=". $applicantId . "&jid=". $row["id"] . "'</a>Favorite</td></tr>";
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        echo "</table>";
+    } else{
+        echo "0 result";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -51,36 +84,7 @@ session_start();
                 <th>Action</th>
             </tr>
 
-            <?php
-
-            if(isset($_SESSION['user'])) {
-                $applicantId = $_SESSION['user'];
-            } else {
-                $applicantId = null;
-            }
-
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
-
-            $sql = "SELECT JobPosting.id as 'id', title, name, role_type, state from Movie join MovieCharacter on Movie.id = MovieCharacter.movie join JobPosting on JobPosting.movie_character = MovieCharacter.id join Location on JobPosting.location = Location.id";
-            $result = $conn-> query($sql);
-
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["title"] . "</td><td>". $row["name"] . "</td><td>". $row["role_type"] . "</td><td>". $row["state"] . "</td>"; 
-                    echo "<td><a href='apply.php?aid=". $applicantId . "&jid=". $row["id"] . "'</a>Apply</td>";
-                    echo "<td><a href='favorite.php?aid=". $applicantId . "&jid=". $row["id"] . "'</a>Favorite</td></tr>";
-                }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
-
-            $conn-> close();
-            ?>
+            <?php getPostings() ?>
             
         </table>
     </section>

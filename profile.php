@@ -3,7 +3,11 @@
 
     if (!isset($_SESSION['user'])) {
         die('404 unavailable');
+    } else {
+        $applicantId = $_SESSION['user'];
     }
+
+    require_once('connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,18 +49,18 @@
 
             <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+            $sql = "SELECT DISTINCT username, CONCAT(Account.first_name, ' ', Account.last_name) AS FullName,
+                email FROM Account WHERE Account.id = :aid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':aid', $applicantId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql = "SELECT DISTINCT username, CONCAT(Account.first_name, ' ', Account.last_name) AS FullName, email FROM Account WHERE Account.id = '".$_SESSION['user']. "'";
-
-            $result = $conn-> query($sql);
-
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
+            if ($stmt->rowCount() > 0){
+                while($row) {
                     echo "<tr><td>". $row["username"] . "</td><td>". $row["FullName"] . "</td><td>". $row["email"] . "</td></tr>"; 
+
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
                 echo "</table>";
             }
@@ -64,7 +68,6 @@
                 echo "0 result";
             }
 
-            $conn-> close();
             ?>
             
         </table>
@@ -75,18 +78,19 @@
 
             <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+            $sql = "SELECT DISTINCT CONCAT(gpa, ' GPA ', 'in ', major, ' @ ', institute) as Diploma
+                FROM Account join Degree on Account.id = Degree.owner
+                WHERE Account.id = :aid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':aid', $applicantId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql = "SELECT DISTINCT CONCAT(gpa, ' GPA ', 'in ', major, ' @ ', institute) as Diploma FROM Account join Degree on Account.id = Degree.owner WHERE Account.id = '".$_SESSION['user']. "'";
+            if ($stmt->rowCount() > 0){
+                while($row) {
+                    echo "<tr><td>". $row["Diploma"] . "</td></tr>";
 
-            $result = $conn-> query($sql);
-
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["Diploma"] . "</td></tr>"; 
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
                 echo "</table>";
             }
@@ -94,7 +98,6 @@
                 echo "0 result";
             }
 
-            $conn-> close();
             ?>
             
         </table>
@@ -105,18 +108,20 @@
 
             <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+            $sql = "SELECT DISTINCT CONCAT(description, ' @ ', organization) as PastJob
+                FROM Account join Degree on Account.id = Degree.owner
+                join JobExperience on Account.id = JobExperience.owner
+                WHERE Account.id = :aid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':aid', $applicantId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql = "SELECT DISTINCT CONCAT(description, ' @ ', organization) as PastJob FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner WHERE Account.id = '".$_SESSION['user']. "'";
+            if ($stmt->rowCount() > 0){
+                while($row) {
+                    echo "<tr><td>". $row["PastJob"] . "</td></tr>";
 
-            $result = $conn-> query($sql);
-
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["PastJob"] . "</td></tr>"; 
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
                 echo "</table>";
             }
@@ -124,7 +129,6 @@
                 echo "0 result";
             }
 
-            $conn-> close();
             ?>
             
         </table>
@@ -136,18 +140,21 @@
 
             <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+            $sql = "SELECT DISTINCT name, proficiency FROM Account join Degree on Account.id = Degree.owner
+                join JobExperience on Account.id = JobExperience.owner
+                join ApplicantSkills on Account.id = ApplicantSkills.applicant
+                join Skill on ApplicantSkills.skill = Skill.id
+                WHERE Account.id = :aid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':aid', $applicantId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql = "SELECT DISTINCT name, proficiency FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner join ApplicantSkills on Account.id = ApplicantSkills.applicant join Skill on ApplicantSkills.skill = Skill.id WHERE Account.id = '".$_SESSION['user']. "'";
+            if ($stmt->rowCount() > 0){
+                while($row) {
+                    echo "<tr><td>". $row["name"] . "</td><td>". $row["proficiency"] . "</td></tr>";
 
-            $result = $conn-> query($sql);
-
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["name"] . "</td><td>". $row["proficiency"] . "</td></tr>"; 
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
                 echo "</table>";
             }
@@ -155,7 +162,6 @@
                 echo "0 result";
             }
 
-            $conn-> close();
             ?>
             
         </table>
@@ -166,18 +172,24 @@
 
             <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+            $sql = "SELECT DISTINCT CONCAT(Skill, ' ', Reference.last_name, ', ', Reference.phone_number)
+                as entireRef FROM Account join Degree on Account.id = Degree.owner
+                join JobExperience on Account.id = JobExperience.owner
+                join ApplicantSkills on Account.id = ApplicantSkills.applicant
+                join Skill on ApplicantSkills.skill = Skill.id
+                join ApplicantReferences on Account.id = ApplicantReferences.applicant
+                join Reference on ApplicantReferences.reference = Reference.id
+                WHERE Account.id = :aid";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':aid', $applicantId);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $sql = "SELECT DISTINCT CONCAT(Skill, ' ', Reference.last_name, ', ', Reference.phone_number) as entireRef FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner join ApplicantSkills on Account.id = ApplicantSkills.applicant join Skill on ApplicantSkills.skill = Skill.id join ApplicantReferences on Account.id = ApplicantReferences.applicant join Reference on ApplicantReferences.reference = Reference.id WHERE Account.id = '".$_SESSION['user']. "'";
-
-            $result = $conn-> query($sql);
-
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
+            if ($stmt->rowCount() > 0){
+                while($row) {
                     echo "<tr><td>". $row["entireRef"] . "</td></tr>"; 
+
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 }
                 echo "</table>";
             }
@@ -185,7 +197,6 @@
                 echo "0 result";
             }
 
-            $conn-> close();
             ?>
             
         </table>
