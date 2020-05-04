@@ -53,7 +53,11 @@ session_start();
 
             <?php
 
-            $applicantId = $_SESSION['user'];
+            if(isset($_SESSION['user'])) {
+                $applicantId = $_SESSION['user'];
+            } else {
+                $applicantId = null;
+            }
 
             $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
             if ($conn-> connect_error) {
