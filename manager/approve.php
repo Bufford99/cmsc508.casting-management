@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['manager'])) {
+if (!isset($_SESSION['hmanager'])) {
     die('404 unavailable');
 }
 
@@ -10,7 +10,7 @@ require_once('../connection.php');
 
 $applicant_id = $_GET['aid'];
 $jobposting_id = $_GET['jid'];
-$manager_id = $_SESSION['manager'];
+$manager_id = $_SESSION['hmanager'];
 
 // check if already approved
 $sql = "SELECT id FROM Application WHERE owner = :aid AND job_posting = :jid AND status = 'APPROVED'";

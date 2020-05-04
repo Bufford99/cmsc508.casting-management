@@ -22,8 +22,8 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
                     <li><a href="postings.php">Postings</a></li>
                     <li><a href="login.html">Login</a></li>
                     <li class="current"><a href="profile.php">Profile</a></li>
