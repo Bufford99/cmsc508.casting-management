@@ -31,11 +31,11 @@ session_start();
                     <?php
                         if (isset($_SESSION['user'])) {
                             echo '<li><a href="logout.php"</a>Logout</li>';
+                            echo '<li><a href="profile.php">Profile</a></li>';
                         } else {
                             echo '<li><a href="login.html">Login</a></li>';
                         }
                     ?>
-                    <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
         </div>

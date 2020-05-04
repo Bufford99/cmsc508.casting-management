@@ -1,5 +1,9 @@
 <?php
- session_start();
+    session_start();
+
+    if (!isset($_SESSION['user'])) {
+        die('404 unavailable');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +29,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
                     <li><a href="postings.php">Postings</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li><a href="logout.php">Logout</a></li>
                     <li class="current"><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
