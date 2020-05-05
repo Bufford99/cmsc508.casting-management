@@ -36,162 +36,169 @@
         </div>
     </header>
     <section id="showcase">
-       <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Email Adress</th>
-            </tr>
+    	<div class="flex-tables">
+	       <table class="profile-data1">
+	            <tr>
+	                <th>Username</th>
+	                <th>Name</th>
+	                <th>Email Adress</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+	            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
+	            if ($conn-> connect_error) {
+	                die("Connection failed:". $conn-> connect_error);
+	            }
 
-            $sql = "SELECT DISTINCT username, CONCAT(Account.first_name, ' ', Account.last_name) AS FullName, email FROM Account WHERE Account.id = '".$_SESSION['user']. "'";
+	            $sql = "SELECT DISTINCT username, CONCAT(Account.first_name, ' ', Account.last_name) AS FullName, email FROM Account WHERE Account.id = '".$_SESSION['user']. "'";
 
-            $result = $conn-> query($sql);
+	            $result = $conn-> query($sql);
 
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["username"] . "</td><td>". $row["FullName"] . "</td><td>". $row["email"] . "</td></tr>"; 
-                }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
+	            if ($result-> num_rows > 0){
+	                while($row = $result-> fetch_assoc()) {
+	                    echo "<tr><td>". $row["username"] . "</td><td>". $row["FullName"] . "</td><td>". $row["email"] . "</td></tr>"; 
+	                }
+	                echo "</table>";
+	            }
+	            else{
+	                echo "0 result";
+	            }
 
-            $conn-> close();
-            ?>
-            
-        </table>
-        <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Degree</th>
-            </tr>
+	            $conn-> close();
+	            ?>
+	            
+	        </table>
+	        <table class="profile-data2">
+	            <tr>
+	                <th>Degree</th>
+	                <th>Major</th>
+	                <th>Institute</th>
+	                <th>Date</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+	            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
+	            if ($conn-> connect_error) {
+	                die("Connection failed:". $conn-> connect_error);
+	            }
 
-            $sql = "SELECT DISTINCT CONCAT(gpa, ' GPA ', 'in ', major, ' @ ', institute) as Diploma FROM Account join Degree on Account.id = Degree.owner WHERE Account.id = '".$_SESSION['user']. "'";
+	            $sql = "SELECT DISTINCT degree_type, major, institute, graduation_date FROM Account join Degree on Account.id = Degree.owner WHERE Account.id = '".$_SESSION['user']. "'";
 
-            $result = $conn-> query($sql);
+	            $result = $conn-> query($sql);
 
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["Diploma"] . "</td></tr>"; 
-                }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
+	            if ($result-> num_rows > 0){
+	                while($row = $result-> fetch_assoc()) {
+	                    echo "<tr><td>". $row["degree_type"] . "</td><td>". $row["major"] . "</td><td>". $row["institute"] . "</td><td>". $row["graduation_date"] . "</td></tr>"; 
+	                }
+	                echo "</table>";
+	            }
+	            else{
+	                echo "0 result";
+	            }
 
-            $conn-> close();
-            ?>
-            
-        </table>
-                <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Experience</th>
-            </tr>
+	            $conn-> close();
+	            ?>
+	            
+	        </table>
+	                <table class="profile-data3">
+	            <tr>
+	                <th>Position</th>
+	                <th>Organization</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+	            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
+	            if ($conn-> connect_error) {
+	                die("Connection failed:". $conn-> connect_error);
+	            }
 
-            $sql = "SELECT DISTINCT CONCAT(description, ' @ ', organization) as PastJob FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner WHERE Account.id = '".$_SESSION['user']. "'";
+	            $sql = "SELECT DISTINCT description, organization FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner WHERE Account.id = '".$_SESSION['user']. "'";
 
-            $result = $conn-> query($sql);
+	            $result = $conn-> query($sql);
 
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["PastJob"] . "</td></tr>"; 
-                }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
+	            if ($result-> num_rows > 0){
+	                while($row = $result-> fetch_assoc()) {
+	                    echo "<tr><td>". $row["description"] . "</td><td>". $row["organization"] . "</td></tr>"; 
+	                }
+	                echo "</table>";
+	            }
+	            else{
+	                echo "0 result";
+	            }
 
-            $conn-> close();
-            ?>
-            
-        </table>
-                <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Skills</th>
-                <th>Proficiency (1-3)</th>
-            </tr>
+	            $conn-> close();
+	            ?>
+	            
+	        </table>
+	                <table class="profile-data4">
+	            <tr>
+	                <th>Skills</th>
+	                <th>Proficiency (1-3)</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+	            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
+	            if ($conn-> connect_error) {
+	                die("Connection failed:". $conn-> connect_error);
+	            }
 
-            $sql = "SELECT DISTINCT name, proficiency FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner join ApplicantSkills on Account.id = ApplicantSkills.applicant join Skill on ApplicantSkills.skill = Skill.id WHERE Account.id = '".$_SESSION['user']. "'";
+	            $sql = "SELECT DISTINCT name, proficiency FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner join ApplicantSkills on Account.id = ApplicantSkills.applicant join Skill on ApplicantSkills.skill = Skill.id WHERE Account.id = '".$_SESSION['user']. "'";
 
-            $result = $conn-> query($sql);
+	            $result = $conn-> query($sql);
 
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["name"] . "</td><td>". $row["proficiency"] . "</td></tr>"; 
-                }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
+	            if ($result-> num_rows > 0){
+	                while($row = $result-> fetch_assoc()) {
+	                    echo "<tr><td>". $row["name"] . "</td><td>". $row["proficiency"] . "</td></tr>"; 
+	                }
+	                echo "</table>";
+	            }
+	            else{
+	                echo "0 result";
+	            }
 
-            $conn-> close();
-            ?>
-            
-        </table>
-                <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>References</th>
-            </tr>
+	            $conn-> close();
+	            ?>
+	            
+	        </table>
+	                <table class="profile-data5">
+	            <tr>
+	                <th>References</th>
+	                <th>Phone Number</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
-            if ($conn-> connect_error) {
-                die("Connection failed:". $conn-> connect_error);
-            }
+	            $conn = mysqli_connect("3.234.246.29", "project_6", "V00864959", "project_6");
+	            if ($conn-> connect_error) {
+	                die("Connection failed:". $conn-> connect_error);
+	            }
 
-            $sql = "SELECT DISTINCT CONCAT(Skill, ' ', Reference.last_name, ', ', Reference.phone_number) as entireRef FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner join ApplicantSkills on Account.id = ApplicantSkills.applicant join Skill on ApplicantSkills.skill = Skill.id join ApplicantReferences on Account.id = ApplicantReferences.applicant join Reference on ApplicantReferences.reference = Reference.id WHERE Account.id = '".$_SESSION['user']. "'";
+	            $sql = "SELECT DISTINCT CONCAT(Reference.first_name, ' ', Reference.last_name) as entireRef, Reference.phone_number FROM Account join Degree on Account.id = Degree.owner join JobExperience on Account.id = JobExperience.owner join ApplicantSkills on Account.id = ApplicantSkills.applicant join Skill on ApplicantSkills.skill = Skill.id join ApplicantReferences on Account.id = ApplicantReferences.applicant join Reference on ApplicantReferences.reference = Reference.id WHERE Account.id = '".$_SESSION['user']. "'";
 
-            $result = $conn-> query($sql);
+	            $result = $conn-> query($sql);
 
-            if ($result-> num_rows > 0){
-                while($row = $result-> fetch_assoc()) {
-                    echo "<tr><td>". $row["entireRef"] . "</td></tr>"; 
-                }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
+	            if ($result-> num_rows > 0){
+	                while($row = $result-> fetch_assoc()) {
+	                    echo "<tr><td>". $row["entireRef"] . "</td><td>". $row["phone_number"] . "</td></tr>"; 
+	                }
+	                echo "</table>";
+	            }
+	            else{
+	                echo "0 result";
+	            }
 
-            $conn-> close();
-            ?>
-            
-        </table>
+	            $conn-> close();
+	            ?>
+	            
+	        </table>
+	    </div>
     </section>
     <footer>
-        <p>Casting, Copyright &copy; 2020</p>
+        <p>Acano Casting, Copyright &copy; 2020</p>
     </footer>
 </body>
 

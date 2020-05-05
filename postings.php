@@ -85,7 +85,7 @@ session_start();
         </table>
     </section>
     <footer>
-        <p>Casting, Copyright &copy; 2020</p>
+        <p>Acano Casting, Copyright &copy; 2020</p>
     </footer>
 </body>
 
