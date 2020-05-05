@@ -42,11 +42,11 @@ session_start();
     </header>
     <section id="showcase">
         <div id="about-comp">
-            <h3 id="about-heading">Who is NameCasting?</h3>
-            <p>Company x seeks to provide aspiring actors and prospective employers a medium in which they can view and apply for various movie roles. It is our mission to help aspiring actors takes the first step in achieving their dreams. Start your carrer in Hollywood today!</p>
+            <h3 id="about-heading">Who are Acano Casting?</h3>
+            <p>Acano Casting seeks to provide aspiring actors and prospective employers a medium in which they can view and apply for various movie roles. It is our mission to help aspiring actors takes the first step in achieving their dreams. Start your carrer in Hollywood today!</p>
         </div>
     </section>
     <footer>
-        <p>Casting, Copyright &copy; 2020</p>
+        <p>Acano Casting, Copyright &copy; 2020</p>
     </footer>
 </body>

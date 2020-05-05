@@ -40,169 +40,176 @@
         </div>
     </header>
     <section id="showcase">
-       <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Email Adress</th>
-            </tr>
+    	<div class="flex-tables">
+	       <table class="profile-data1">
+	            <tr>
+	                <th>Username</th>
+	                <th>Name</th>
+	                <th>Email Adress</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $sql = "SELECT DISTINCT username, CONCAT(Account.first_name, ' ', Account.last_name) AS FullName,
-                email FROM Account WHERE Account.id = :aid";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':aid', $applicantId);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $sql = "SELECT DISTINCT username, CONCAT(Account.first_name, ' ', Account.last_name) AS FullName,
+                    email FROM Account WHERE Account.id = :aid";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':aid', $applicantId);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($stmt->rowCount() > 0){
-                while($row) {
-                    echo "<tr><td>". $row["username"] . "</td><td>". $row["FullName"] . "</td><td>". $row["email"] . "</td></tr>"; 
+                if ($stmt->rowCount() > 0){
+                    while($row) {
+                        echo "<tr><td>". $row["username"] . "</td><td>". $row["FullName"] . "</td><td>". $row["email"] . "</td></tr>"; 
 
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
-
-            ?>
-            
-        </table>
-        <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Degree</th>
-            </tr>
-
-            <?php
-
-            $sql = "SELECT DISTINCT CONCAT(gpa, ' GPA ', 'in ', major, ' @ ', institute) as Diploma
-                FROM Account join Degree on Account.id = Degree.owner
-                WHERE Account.id = :aid";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':aid', $applicantId);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($stmt->rowCount() > 0){
-                while($row) {
-                    echo "<tr><td>". $row["Diploma"] . "</td></tr>";
-
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                else{
+                    echo "0 result";
                 }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
 
-            ?>
-            
-        </table>
-                <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Experience</th>
-            </tr>
+                ?>
+	            
+	        </table>
+	        <table class="profile-data2">
+	            <tr>
+	                <th>Degree</th>
+	                <th>Major</th>
+	                <th>Institute</th>
+	                <th>Date</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $sql = "SELECT DISTINCT CONCAT(description, ' @ ', organization) as PastJob
-                FROM Account join Degree on Account.id = Degree.owner
-                join JobExperience on Account.id = JobExperience.owner
-                WHERE Account.id = :aid";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':aid', $applicantId);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $sql = "SELECT DISTINCT CONCAT(gpa, ' GPA ', 'in ', major, ' @ ', institute) as Diploma
+                    FROM Account join Degree on Account.id = Degree.owner
+                    WHERE Account.id = :aid";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':aid', $applicantId);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($stmt->rowCount() > 0){
-                while($row) {
-                    echo "<tr><td>". $row["PastJob"] . "</td></tr>";
+                if ($stmt->rowCount() > 0){
+                    while($row) {
+                        echo "<tr><td>". $row["Diploma"] . "</td></tr>";
 
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
-
-            ?>
-            
-        </table>
-                <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>Skills</th>
-                <th>Proficiency (1-3)</th>
-            </tr>
-
-            <?php
-
-            $sql = "SELECT DISTINCT name, proficiency FROM Account join Degree on Account.id = Degree.owner
-                join JobExperience on Account.id = JobExperience.owner
-                join ApplicantSkills on Account.id = ApplicantSkills.applicant
-                join Skill on ApplicantSkills.skill = Skill.id
-                WHERE Account.id = :aid";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':aid', $applicantId);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($stmt->rowCount() > 0){
-                while($row) {
-                    echo "<tr><td>". $row["name"] . "</td><td>". $row["proficiency"] . "</td></tr>";
-
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                else{
+                    echo "0 result";
                 }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
 
-            ?>
-            
-        </table>
-                <table class="profile-data" style="background-color: #708090; border: solid; border-color: #000000; margin-top: 5%; margin-right: 2%; float: right; text-align: left;" width="25%">
-            <tr>
-                <th>References</th>
-            </tr>
+                ?>
+	            
+	        </table>
+	                <table class="profile-data3">
+	            <tr>
+	                <th>Position</th>
+	                <th>Organization</th>
+	            </tr>
 
-            <?php
+	            <?php
 
-            $sql = "SELECT DISTINCT CONCAT(Skill, ' ', Reference.last_name, ', ', Reference.phone_number)
-                as entireRef FROM Account join Degree on Account.id = Degree.owner
-                join JobExperience on Account.id = JobExperience.owner
-                join ApplicantSkills on Account.id = ApplicantSkills.applicant
-                join Skill on ApplicantSkills.skill = Skill.id
-                join ApplicantReferences on Account.id = ApplicantReferences.applicant
-                join Reference on ApplicantReferences.reference = Reference.id
-                WHERE Account.id = :aid";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':aid', $applicantId);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $sql = "SELECT DISTINCT CONCAT(description, ' @ ', organization) as PastJob
+                    FROM Account join Degree on Account.id = Degree.owner
+                    join JobExperience on Account.id = JobExperience.owner
+                    WHERE Account.id = :aid";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':aid', $applicantId);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($stmt->rowCount() > 0){
-                while($row) {
-                    echo "<tr><td>". $row["entireRef"] . "</td></tr>"; 
+                if ($stmt->rowCount() > 0){
+                    while($row) {
+                        echo "<tr><td>". $row["PastJob"] . "</td></tr>";
 
-                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+                    echo "</table>";
                 }
-                echo "</table>";
-            }
-            else{
-                echo "0 result";
-            }
+                else{
+                    echo "0 result";
+                }
 
-            ?>
-            
-        </table>
+                ?>
+	            
+	        </table>
+	                <table class="profile-data4">
+	            <tr>
+	                <th>Skills</th>
+	                <th>Proficiency (1-3)</th>
+	            </tr>
+
+	            <?php
+
+                $sql = "SELECT DISTINCT name, proficiency FROM Account join Degree on Account.id = Degree.owner
+                    join JobExperience on Account.id = JobExperience.owner
+                    join ApplicantSkills on Account.id = ApplicantSkills.applicant
+                    join Skill on ApplicantSkills.skill = Skill.id
+                    WHERE Account.id = :aid";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':aid', $applicantId);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($stmt->rowCount() > 0){
+                    while($row) {
+                        echo "<tr><td>". $row["name"] . "</td><td>". $row["proficiency"] . "</td></tr>";
+
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+                    echo "</table>";
+                }
+                else{
+                    echo "0 result";
+                }
+
+                ?>
+	            
+	        </table>
+	                <table class="profile-data5">
+	            <tr>
+	                <th>References</th>
+	                <th>Phone Number</th>
+	            </tr>
+
+	            <?php
+
+                $sql = "SELECT DISTINCT CONCAT(Skill, ' ', Reference.last_name, ', ', Reference.phone_number)
+                    as entireRef FROM Account join Degree on Account.id = Degree.owner
+                    join JobExperience on Account.id = JobExperience.owner
+                    join ApplicantSkills on Account.id = ApplicantSkills.applicant
+                    join Skill on ApplicantSkills.skill = Skill.id
+                    join ApplicantReferences on Account.id = ApplicantReferences.applicant
+                    join Reference on ApplicantReferences.reference = Reference.id
+                    WHERE Account.id = :aid";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':aid', $applicantId);
+                $stmt->execute();
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($stmt->rowCount() > 0){
+                    while($row) {
+                        echo "<tr><td>". $row["entireRef"] . "</td></tr>"; 
+
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    }
+                    echo "</table>";
+                }
+                else{
+                    echo "0 result";
+                }
+
+                ?>
+	            
+	        </table>
+	    </div>
     </section>
     <footer>
-        <p>Casting, Copyright &copy; 2020</p>
+        <p>Acano Casting, Copyright &copy; 2020</p>
     </footer>
 </body>
 
