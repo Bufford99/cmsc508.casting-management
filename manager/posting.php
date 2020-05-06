@@ -28,7 +28,7 @@ if (isset($_GET['action']) == 'create-posting') {
     $sql = "INSERT INTO JobPosting(id, manager, location, movie_character) VALUES(:id, :manager, :loc, :mc)";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':id', $movieCharacter);
-    $stmt->bindValue(':manager', $_SESSION['manager']);
+    $stmt->bindValue(':manager', $_SESSION['pmanager']);
     $stmt->bindValue(':loc', $location);
     $stmt->bindValue(':mc', $movieCharacter);
     $stmt->execute();
